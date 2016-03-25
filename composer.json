@@ -1,0 +1,22 @@
+{
+  "name": "dcs/security-core-bundle",
+  "type": "symfony-bundle",
+  "description": "The DCSSecurityCoreBundle provides the basic services for the management of security",
+  "require": {
+    "php": ">=5.3.9",
+    "dcs/user-core-bundle": "~1.0@dev"
+  },
+  "suggest": {
+    "dcs/security-auth-form-bundle": "~1.0@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "DCS\\Security\\CoreBundle\\": "src"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
