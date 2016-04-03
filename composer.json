@@ -2,16 +2,32 @@
   "name": "dcs/security-core-bundle",
   "type": "symfony-bundle",
   "description": "The DCSSecurityCoreBundle provides the basic services for the management of security",
+  "keywords": ["Security"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Damiano Ciarla",
+      "email": "damiano.ciarla@gmail.org"
+    }
+  ],
   "require": {
-    "php": ">=5.3.9",
+    "php": ">=5.3.9"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5",
     "dcs/user-core-bundle": "~1.0@dev"
   },
   "suggest": {
-    "dcs/security-auth-form-bundle": "~1.0@dev"
+    "dcs/security-auth-form-bundle": "Provides an authentication system using the login form"
   },
   "autoload": {
     "psr-4": {
       "DCS\\Security\\CoreBundle\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DCS\\Security\\CoreBundle\\Tests\\": "tests"
     }
   },
   "extra": {

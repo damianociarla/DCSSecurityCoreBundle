@@ -39,7 +39,7 @@ class AuthenticatedTokenEvent extends Event
     }
 
     /**
-     * Regenerate same instance of this token with aother roles
+     * Regenerate same instance of this token with another roles
      *
      * @param array $roles
      * @param bool $mergeWithExistingRoles
