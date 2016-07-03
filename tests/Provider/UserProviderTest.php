@@ -26,12 +26,12 @@ class UserProviderTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->dispatcher = $this->getMock(EventDispatcherInterface::class);
+        $this->dispatcher = $this->createMock(EventDispatcherInterface::class);
 
-        $user = $this->getMock(UserInterface::class);
+        $user = $this->createMock(UserInterface::class);
         $user->method('getUsername')->willReturn('johndoe');
 
-        $userRepository = $this->getMock(UserRepositoryInterface::class);
+        $userRepository = $this->createMock(UserRepositoryInterface::class);
         $userRepository->expects($this->any())
             ->method('findOneByUsername')
             ->willReturn($user);
@@ -50,14 +50,14 @@ class UserProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testRefreshUser()
     {
-        $this->assertInstanceOf(UserInterface::class, $this->userProvider->refreshUser($this->getMock(UserInterface::class)));
+        $this->assertInstanceOf(UserInterface::class, $this->userProvider->refreshUser($this->createMock(UserInterface::class)));
         $this->expectException(UnsupportedUserException::class);
-        $this->userProvider->refreshUser($this->getMock(\Symfony\Component\Security\Core\User\UserInterface::class));
+        $this->userProvider->refreshUser($this->createMock(\Symfony\Component\Security\Core\User\UserInterface::class));
     }
 
     public function testSupportsClass()
     {
-        $this->assertTrue($this->userProvider->supportsClass($this->getMock(User::class)));
-        $this->assertFalse($this->userProvider->supportsClass($this->getMock(\Symfony\Component\Security\Core\User\UserInterface::class)));
+        $this->assertTrue($this->userProvider->supportsClass($this->createMock(User::class)));
+        $this->assertFalse($this->userProvider->supportsClass($this->createMock(\Symfony\Component\Security\Core\User\UserInterface::class)));
     }
 }

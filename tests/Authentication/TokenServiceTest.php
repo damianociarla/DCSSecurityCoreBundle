@@ -23,7 +23,7 @@ class TokenServiceTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->tokenStorage = $this->getMock(TokenStorageInterface::class);
+        $this->tokenStorage = $this->createMock(TokenStorageInterface::class);
         $this->tokenService = new TokenService(self::PROVIDER_KEY, $this->tokenStorage);
     }
 

@@ -14,7 +14,7 @@ class UserLoadedEventTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->event = new UserLoadedEvent($this->getMock(UserInterface::class), 'johndoe');
+        $this->event = new UserLoadedEvent($this->createMock(UserInterface::class), 'johndoe');
     }
 
     public function testGetUser()
