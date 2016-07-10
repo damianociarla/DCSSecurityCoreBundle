@@ -2,12 +2,12 @@
 
 namespace DCS\Security\CoreBundle\Provider;
 
-use DCS\User\CoreBundle\Model\User;
-use DCS\User\CoreBundle\Model\UserInterface as DCSUserInterface;
-use DCS\User\CoreBundle\Repository\UserRepositoryInterface;
 use DCS\Security\CoreBundle\DCSSecurityCoreEvents;
 use DCS\Security\CoreBundle\Event\UserLoadedEvent;
 use DCS\Security\CoreBundle\Event\UsernameBeforeLoadEvent;
+use DCS\User\CoreBundle\Model\User;
+use DCS\User\CoreBundle\Model\UserInterface as DCSUserInterface;
+use DCS\User\CoreBundle\Repository\UserRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
