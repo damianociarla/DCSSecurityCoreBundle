@@ -24,23 +24,24 @@ class UserProviderTest extends \PHPUnit_Framework_TestCase
      */
     private $userProvider;
 
+    /**
+     * @var UserRepositoryInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $userRepository;
+
     protected function setUp()
     {
         $this->dispatcher = $this->createMock(EventDispatcherInterface::class);
-
-        $user = $this->createMock(UserInterface::class);
-        $user->method('getUsername')->willReturn('johndoe');
-
-        $userRepository = $this->createMock(UserRepositoryInterface::class);
-        $userRepository->expects($this->any())
-            ->method('findOneByUsername')
-            ->willReturn($user);
-
-        $this->userProvider = new UserProvider($userRepository, $this->dispatcher);
+        $this->userRepository = $this->createMock(UserRepositoryInterface::class);
+        $this->userProvider = new UserProvider($this->userRepository, $this->dispatcher);
     }
 
     public function testLoadUserByUsernameSuccessfully()
     {
+        $this->userRepository->expects($this->any())
+            ->method('findOneByUsername')
+            ->willReturn($this->getUser());
+
         $this->dispatcher->expects($this->exactly(2))->method('dispatch');
         $this->dispatcher->expects($this->at(0))->method('dispatch')->with(DCSSecurityCoreEvents::PROVIDER_BEFORE_LOAD_USER, $this->isInstanceOf(UsernameBeforeLoadEvent::class));
         $this->dispatcher->expects($this->at(1))->method('dispatch')->with(DCSSecurityCoreEvents::PROVIDER_AFTER_LOAD_USER, $this->isInstanceOf(UserLoadedEvent::class));
@@ -48,8 +49,24 @@ class UserProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(UserInterface::class, $this->userProvider->loadUserByUsername('johndoe'));
     }
 
+    /**
+     * @expectedException \Symfony\Component\Security\Core\Exception\UsernameNotFoundException
+     */
+    public function testLoadUserByUsernameNonExistent()
+    {
+        $this->userRepository->expects($this->once())
+            ->method('findOneByUsername')
+            ->willReturn(null);
+
+        $this->userProvider->loadUserByUsername('johndoe');
+    }
+
     public function testRefreshUser()
     {
+        $this->userRepository->expects($this->any())
+            ->method('findOneByUsername')
+            ->willReturn($this->getUser());
+
         $this->assertInstanceOf(UserInterface::class, $this->userProvider->refreshUser($this->createMock(UserInterface::class)));
         $this->expectException(UnsupportedUserException::class);
         $this->userProvider->refreshUser($this->createMock(\Symfony\Component\Security\Core\User\UserInterface::class));
@@ -59,5 +76,16 @@ class UserProviderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this->userProvider->supportsClass($this->createMock(User::class)));
         $this->assertFalse($this->userProvider->supportsClass($this->createMock(\Symfony\Component\Security\Core\User\UserInterface::class)));
+    }
+
+    /**
+     * @return UserInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getUser()
+    {
+        $user = $this->createMock(UserInterface::class);
+        $user->method('getUsername')
+            ->willReturn('johndoe');
+        return $user;
     }
 }
