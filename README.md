@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/damianociarla/DCSSecurityCoreBundle.svg?branch=master)](https://travis-ci.org/damianociarla/DCSSecurityCoreBundle)
+
 # DCSSecurityCoreBundle
 
 The DCSSecurityCoreBundle offers the integration of **DCSUser** with the *Symfony security system*.
