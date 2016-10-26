@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/damianociarla/DCSSecurityCoreBundle.svg?branch=master)](https://travis-ci.org/damianociarla/DCSSecurityCoreBundle)
+[![Build Status](https://travis-ci.org/damianociarla/DCSSecurityCoreBundle.svg?branch=master)](https://travis-ci.org/damianociarla/DCSSecurityCoreBundle) [![Coverage Status](https://coveralls.io/repos/github/damianociarla/DCSSecurityCoreBundle/badge.svg?branch=master)](https://coveralls.io/github/damianociarla/DCSSecurityCoreBundle?branch=master)
 
 # DCSSecurityCoreBundle
 
