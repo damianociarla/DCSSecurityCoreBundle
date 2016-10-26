@@ -15,7 +15,9 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^5",
-    "dcs/user-core-bundle": "~1.0@dev"
+    "dcs/user-core-bundle": "~1.0@dev",
+    "satooshi/php-coveralls": "~1.0",
+    "phpunit/phpcov": "3.*"
   },
   "suggest": {
     "dcs/security-auth-form-bundle": "Provides an authentication system using the login form"
